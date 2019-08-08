@@ -10,8 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val translator = TranslatorImpl()
         am_btn_translate.setOnClickListener {
-            am_output.text = am_input.text.toString()
+            am_output.text = translator.translate(am_input.text.toString())
         }
     }
 }
