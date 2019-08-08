@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">translator</string>
+    <string name="btn_translate">Translate</string>
+    <string name="edtx_hint">Enter text to translate</string>
 </resources>
