@@ -6,14 +6,14 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers.computation
+import javax.inject.Inject
 
 /**
  * ViewModel to manage translation for View and moving computation off Android main thread
  */
-class MainViewModel: ViewModel() {
+class MainViewModel @Inject constructor(val translator: Translator): ViewModel() {
     private val translatedOutput = MutableLiveData<String>()
 
-    val translator = TranslatorImpl()
     private val translationEngine = TranslationEngine(translator)
     private val disposable = CompositeDisposable()
 
