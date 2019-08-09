@@ -1,5 +1,7 @@
 package com.mgm.translator
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -10,9 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val translator = TranslatorImpl()
+        val viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
+
+        viewModel.getTranslation().observe(this, Observer {
+            am_output.text = it
+        })
+
         am_btn_translate.setOnClickListener {
-            am_output.text = translator.translate(am_input.text.toString())
+            viewModel.translate(am_input.text.toString())
         }
     }
 }
